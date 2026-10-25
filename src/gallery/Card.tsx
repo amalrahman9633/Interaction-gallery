@@ -8,6 +8,8 @@ import styles from "./Card.module.css";
 
 type Props = { entry: Entry; isOpen: boolean };
 
+export const DEFAULT_ASPECT = 3 / 2;
+
 const Card = forwardRef<HTMLElement, Props>(function Card({ entry, isOpen }, ref) {
   const { meta } = entry;
   const frameRef = useRef<HTMLDivElement>(null);
@@ -29,52 +31,49 @@ const Card = forwardRef<HTMLElement, Props>(function Card({ entry, isOpen }, ref
   return (
     <motion.article
       ref={ref}
-      layout
+      layoutId={`card-${meta.slug}`}
       className={styles.card}
-      initial={{ opacity: 0, scale: 0.96 }}
+      initial={{ opacity: 0, scale: 0.97 }}
       animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.2 } }}
+      exit={{ opacity: 0, scale: 0.97, transition: { duration: 0.2 } }}
       transition={{ ...layoutSpring, opacity: easeOut }}
     >
       <div
         ref={frameRef}
         className={styles.frame}
+        style={{ aspectRatio: meta.aspect ?? DEFAULT_ASPECT }}
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
       >
         {isOpen ? (
           <div className={styles.placeholder} />
         ) : (
-          <motion.div layoutId={`stage-${meta.slug}`} className={styles.stage} style={{ borderRadius: 18 }} transition={layoutSpring}>
+          <motion.div layoutId={`stage-${meta.slug}`} className={styles.stage} style={{ borderRadius: 28 }} transition={layoutSpring}>
             {inView && <Stage entry={entry} />}
           </motion.div>
         )}
-        <span className={styles.expand} aria-hidden>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M8.5 1.5h4v4M5.5 12.5h-4v-4M12.5 1.5 8 6M1.5 12.5 6 8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </span>
-      </div>
 
-      <div className={styles.info}>
-        <a
-          href={`/i/${meta.slug}`}
-          className={styles.title}
-          onClick={(e) => {
-            e.preventDefault();
-            open();
-          }}
-        >
-          {meta.title}
-        </a>
-        <span className={styles.kind}>
-          {isNew(meta) && <span className={styles.new}>New</span>}
-          {meta.kind === "study" ? "Study" : "Original"}
-        </span>
+        <div className={styles.badges}>
+          {isNew(meta) && <span className={`${styles.badge} ${styles.badgeNew}`}>New</span>}
+          {meta.kind === "study" && <span className={styles.badge}>Study</span>}
+        </div>
+
+        <div className={styles.label}>
+          <a
+            href={`/i/${meta.slug}`}
+            className={styles.title}
+            onClick={(e) => {
+              e.preventDefault();
+              open();
+            }}
+          >
+            {meta.title}
+          </a>
+          {meta.kind === "study" && meta.inspiredBy && (
+            <span className={styles.credit}>after {meta.inspiredBy.name}</span>
+          )}
+        </div>
       </div>
-      {meta.kind === "study" && meta.inspiredBy && (
-        <p className={styles.credit}>after {meta.inspiredBy.name}</p>
-      )}
     </motion.article>
   );
 });

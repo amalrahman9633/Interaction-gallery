@@ -37,13 +37,13 @@ Follow the contract in CLAUDE.md. The checklist:
 - [ ] `prefers-reduced-motion` shows a calm static or reduced version
 - [ ] Pointer events for mouse and touch; hover-only effects have a touch fallback; `touch-action: pan-y` so cards don't trap page scrolling
 - [ ] Keyboard-reachable where it makes sense
-- [ ] Reads well in both light and dark mode (or set `background` in meta for a fixed scene)
+- [ ] Reads well on the dark default (black page, `#171717` card) and in light mode (or set `background` in meta for a fixed scene)
 
 **Motion quality is the priority.** No linear or default easing. Tune springs deliberately (start around stiffness 200–400, damping 20–30, and adjust by feel). Prefer transforms and opacity over layout properties. Use `will-change` sparingly.
 
 ## 4. Fill in meta.ts
 
-Title, note (one or two sentences on intent or what was learned), tags (reuse existing tags where possible so filters stay useful), and `controls`. Each control key must match a prop name. Expose the values that change the *feel* (spring, strength, radius, speed, colors), not every internal constant.
+Title, `aspect` if the piece reads better tall or square than the default 3 / 2 card (e.g. `1` or `4 / 5`), note (one or two sentences on intent or what was learned), tags (reuse existing tags where possible so filters stay useful), and `controls`. Each control key must match a prop name. Expose the values that change the *feel* (spring, strength, radius, speed, colors), not every internal constant.
 
 ## 5. Verify
 

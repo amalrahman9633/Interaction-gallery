@@ -1,0 +1,118 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 320px) 1fr;
+  align-items: center;
+  gap: 16px;
+  height: 72px;
+  padding: 0 20px;
+}
+
+/* Soft fade behind the bar once content scrolls under it. */
+.bar::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -24px;
+  z-index: -1;
+  background: linear-gradient(var(--bar-fade) 55%, transparent);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+  pointer-events: none;
+}
+
+.bar[data-scrolled="true"]::before {
+  opacity: 1;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: start;
+  text-decoration: none;
+  border-radius: 999px;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--text);
+  color: var(--bg);
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  padding: 0 8px 0 14px;
+  border-radius: 999px;
+  background: var(--chip);
+  color: var(--text-2);
+  cursor: text;
+  transition: background-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+}
+
+.search:focus-within {
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+}
+
+.search input::placeholder {
+  color: var(--text-2);
+}
+
+.search input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.kbd {
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: var(--chip);
+  color: var(--text-3);
+  font: 500 11px/1.4 var(--font);
+}
+
+.end {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+@media (max-width: 640px) {
+  .bar {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 10px;
+    height: 64px;
+    padding: 0 12px;
+  }
+  .name,
+  .kbd {
+    display: none;
+  }
+}

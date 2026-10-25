@@ -48,7 +48,7 @@ export default function DetailView({ entry }: { entry: Entry }) {
         <motion.div
           layoutId={`stage-${meta.slug}`}
           className={styles.stage}
-          style={{ borderRadius: 18 }}
+          style={{ borderRadius: 28 }}
           transition={layoutSpring}
         >
           <Stage key={run} entry={entry} values={values} />

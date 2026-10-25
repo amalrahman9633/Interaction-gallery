@@ -1,32 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { uiSpring } from "./motion";
 import styles from "./ThemeToggle.module.css";
 
 type Theme = "light" | "dark";
 
-const systemTheme = (): Theme =>
-  window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-
-const readStored = (): Theme | null => {
-  try {
-    const t = localStorage.getItem("theme");
-    return t === "light" || t === "dark" ? t : null;
-  } catch {
-    return null;
-  }
-};
+// Dark is the default look; light is remembered once a visitor picks it.
+const readTheme = (): Theme => (document.documentElement.dataset.theme === "light" ? "light" : "dark");
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>(() => readStored() ?? systemTheme());
-
-  // Follow the OS until the visitor picks a theme themselves.
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = () => !readStored() && setTheme(systemTheme());
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
+  const [theme, setTheme] = useState<Theme>(readTheme);
 
   const toggle = () => {
     const next: Theme = theme === "dark" ? "light" : "dark";
@@ -50,8 +33,8 @@ export default function ThemeToggle() {
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.svg
           key={theme}
-          width="18"
-          height="18"
+          width="16"
+          height="16"
           viewBox="0 0 18 18"
           fill="none"
           initial={{ opacity: 0, rotate: -60, scale: 0.6 }}

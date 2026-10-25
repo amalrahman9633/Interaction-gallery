@@ -36,5 +36,7 @@ export type InteractionMeta = {
   added?: string;
   /** Background behind the interaction in cards and the detail stage. Defaults to the theme surface. */
   background?: string;
+  /** Card shape in the grid as width / height. Mix shapes for a livelier masonry. Defaults to 3 / 2. */
+  aspect?: number;
   controls: Record<string, Control>;
 };
