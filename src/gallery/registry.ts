@@ -47,6 +47,8 @@ export const defaultValues = (meta: InteractionMeta): ControlValues =>
 const NEW_WINDOW_DAYS = 21;
 export const isNew = (meta: InteractionMeta) => {
   if (!meta.added) return false;
-  const age = (Date.now() - new Date(meta.added).getTime()) / 86_400_000;
+  // Parse as local midnight; a bare "YYYY-MM-DD" would be UTC and look like the future
+  // to anyone east of UTC early in the day.
+  const age = (Date.now() - new Date(`${meta.added}T00:00:00`).getTime()) / 86_400_000;
   return age >= 0 && age <= NEW_WINDOW_DAYS;
 };

@@ -4,7 +4,7 @@ const meta: InteractionMeta = {
   slug: "secret-folder",
   title: "Secret Folder",
   kind: "study",
-  inspiredBy: { name: "TODO: credit", url: undefined },
+  inspiredBy: { name: "@AdityaSur11", url: "https://x.com/AdityaSur11" },
   note: "Hover and the cover swings open on its left edge, a sheet peeking out. Click and the sheet slides out, comes around to the front, and flips over to reveal a note, then tucks itself back in on the next click. The sheet swaps layers at its furthest point out, so the move to the front never shows.",
   tags: ["hover", "click", "3D", "card"],
   added: "2026-10-25",
