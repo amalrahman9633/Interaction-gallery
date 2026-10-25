@@ -1,0 +1,116 @@
+.index {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+
+.index h1 {
+  margin: 0 0 24px;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+
+.index ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.index li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.index code {
+  color: var(--text-3);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.missing {
+  color: var(--text-2);
+}
+
+.bench {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+}
+
+.frame {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: width 0.5s var(--ease-out), height 0.5s var(--ease-out), border-radius 0.5s var(--ease-out);
+}
+
+.bench[data-size="card"] .frame {
+  width: 400px;
+  height: 300px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow), 0 0 0 1px var(--line);
+}
+
+.bench[data-size="phone"] .frame {
+  width: 390px;
+  height: min(844px, 90dvh);
+  border-radius: 32px;
+  box-shadow: var(--shadow), 0 0 0 1px var(--line);
+}
+
+.toolbar {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 4px 4px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow), inset 0 0 0 1px var(--line);
+  font-size: 13px;
+}
+
+.toolbar a {
+  text-decoration: none;
+  color: var(--text-2);
+}
+
+.toolbar strong {
+  margin: 0 8px;
+  font-weight: 500;
+}
+
+.toolbar button {
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--text-2);
+  font-size: 12px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.toolbar button[data-active="true"] {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+.panel {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  width: 300px;
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+  border-radius: 14px;
+  box-shadow: var(--shadow-lift);
+}
