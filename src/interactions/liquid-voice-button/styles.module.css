@@ -1,0 +1,107 @@
+.root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+/* Fixed 560 × 400 design canvas, centered and scaled to fit. */
+.stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  cursor: pointer;
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button:focus-visible {
+  outline: 2px solid rgba(160, 190, 240, 0.9);
+  outline-offset: 6px;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Dark glass: deep navy body, a blue-lit rim, and a soft glow pooling at the bottom. */
+.faceDark {
+  background: linear-gradient(to bottom, #1b2535, #0c1119 70%, #101826);
+  box-shadow:
+    inset 0 0 0 1.5px rgba(112, 142, 192, 0.5),
+    inset 0 -12px 22px rgba(80, 122, 196, 0.22),
+    inset 0 10px 16px rgba(255, 255, 255, 0.04),
+    0 0 18px rgba(70, 110, 180, 0.12);
+}
+
+/* Bright glass: near-white with a cool tint toward the bottom edge. */
+.faceLight {
+  background: linear-gradient(to bottom, #ffffff, #f2f6fb 45%, #dbe5f3);
+  box-shadow:
+    inset 0 0 0 1.5px rgba(255, 255, 255, 0.95),
+    inset 0 -12px 20px rgba(118, 150, 210, 0.3),
+    inset 0 0 12px rgba(150, 180, 230, 0.25),
+    0 0 24px rgba(120, 160, 230, 0.25);
+}
+
+.content {
+  grid-area: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  color: #fff;
+  font: 500 34px/1 "Inter", ui-sans-serif, -apple-system, system-ui, sans-serif;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.contentEnd {
+  color: #0b0b0c;
+}
+
+.icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+/* The handset is wide and short, so it gets its own box. */
+.phone {
+  width: 50px;
+  height: 30px;
+}
+
+.measure {
+  position: absolute;
+  visibility: hidden;
+  top: 0;
+  left: 0;
+}

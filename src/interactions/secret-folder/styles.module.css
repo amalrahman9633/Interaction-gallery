@@ -1,0 +1,146 @@
+.root {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  container-type: size;
+  touch-action: pan-y;
+}
+
+/* Everything inside is sized from the folder's width (cqw), so it scales as one piece. */
+.folder {
+  position: relative;
+  width: min(46cqw, 50cqh);
+  aspect-ratio: 4 / 5;
+  container-type: inline-size;
+  /* About three folder-widths away, so the swing reads strongly at any size. */
+  perspective: 140cqmin;
+  cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.folder:focus-visible::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 9cqw;
+  box-shadow: 0 0 0 2px var(--top);
+  pointer-events: none;
+}
+
+.back,
+.cover {
+  position: absolute;
+  inset: 0;
+  border-radius: 6cqw;
+}
+
+.back {
+  z-index: 0;
+  background: var(--back);
+}
+
+.cover {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 9cqw 8cqw;
+  background: linear-gradient(to bottom, var(--top), var(--bottom));
+  /* Thin lit top edge, like the reference. */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  color: #fff;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.mark {
+  width: 11cqw;
+  height: 11cqw;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6cqw;
+}
+
+.title {
+  font: 500 4.8cqw/1 ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.subtitle {
+  font: 400 3.7cqw/1.2 "Inter", ui-sans-serif, -apple-system, system-ui, sans-serif;
+  /* A pale tint of the folder color, so it suits any folder color. */
+  color: color-mix(in srgb, #fff 72%, var(--top));
+}
+
+/* The sheet: two faces back to back. rotateY(180deg) shows the note side. */
+.sheet {
+  position: absolute;
+  top: 7%;
+  left: 3%;
+  width: 94%;
+  height: 86%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  border-radius: 6cqw;
+  background: var(--paper);
+  /* Hairline edge so white paper still reads on a white page (the background is transparent). */
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.07);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sheet[data-front="true"] .face {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.07), 0 2cqw 7cqw rgba(70, 45, 30, 0.14), 0 0.4cqw 1.2cqw rgba(70, 45, 30, 0.08);
+}
+
+.faceBack {
+  display: flex;
+  justify-content: flex-end;
+  padding: 7cqw 6cqw;
+}
+
+.backLabel {
+  writing-mode: vertical-rl;
+  font: 500 3.5cqw/1 ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.faceNote {
+  display: flex;
+  flex-direction: column;
+  gap: 4.6cqw;
+  padding: 13cqw 8.5cqw 9cqw;
+  transform: rotateY(180deg);
+  color: var(--ink);
+  font: 400 4.2cqw/1.34 "Inter", ui-sans-serif, -apple-system, system-ui, sans-serif;
+  letter-spacing: -0.005em;
+}
+
+.faceNote p {
+  margin: 0;
+}
+
+.doodle {
+  width: 16cqw;
+  margin: -1cqw 0 -2cqw;
+  color: var(--ink);
+}

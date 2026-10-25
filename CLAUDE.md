@@ -83,7 +83,7 @@ The home page layout is modeled on bencho.dev (layout and feel only, no copied a
 
 - Dark first: pure black page, `#171717` cards with 28px corners, 12px gaps. Light mode is opt-in through the toggle and remembered.
 - Fixed top bar: name on the left, a centered search pill (⌘K or `/` to focus), theme toggle on the right
-- Centered hero: an outlined pill badge (count and last update), a 40px medium-weight title, a gray subtitle with key phrases in white, and a white "See the latest" button
+- Centered hero: an outlined pill badge (count and last update), a 40px medium-weight title, and a gray subtitle with key phrases in white (no CTA button)
 - One horizontally scrolling row of pill chips: All / Originals / Studies, then tags. The active chip is a white pill that slides between chips.
 - Masonry wall of 3 / 2 / 1 columns. Cards have no visible caption. Badges (New, Study) sit top left, and the title fades in bottom left on hover (always visible on touch).
 - Cards play live while on screen. Clicking a card morphs it into the full-screen detail view with the live interaction, slider panel, note, tags, and credit.

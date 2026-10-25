@@ -6,7 +6,7 @@ import Card, { DEFAULT_ASPECT } from "./Card";
 import DetailView from "./DetailView";
 import Filters, { type KindFilter } from "./Filters";
 import TopBar from "./TopBar";
-import { easeOut, uiSpring } from "./motion";
+import { easeOut } from "./motion";
 import styles from "./Gallery.module.css";
 
 export default function Gallery({ openSlug }: { openSlug?: string }) {
@@ -59,17 +59,6 @@ export default function Gallery({ openSlug }: { openSlug?: string }) {
             A growing collection of <em>original interactions</em> and <em>credited studies</em>,
             designed by Amal Rahman and built with AI.
           </p>
-          {latest && (
-            <motion.button
-              className={styles.cta}
-              onClick={() => navigate(`/i/${latest.meta.slug}`)}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.96 }}
-              transition={uiSpring}
-            >
-              See the latest
-            </motion.button>
-          )}
         </motion.section>
 
         <Filters kind={kind} onKind={setKind} tags={allTags} tag={tag} onTag={setTag} />

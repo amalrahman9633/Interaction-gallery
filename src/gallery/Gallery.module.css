@@ -30,7 +30,7 @@
 
 .hero p {
   max-width: 34em;
-  margin: 0 0 28px;
+  margin: 0;
   color: var(--text-2);
   font-size: 16px;
   line-height: 1.55;
@@ -40,18 +40,6 @@
 .hero em {
   color: var(--text);
   font-style: normal;
-}
-
-.cta {
-  height: 40px;
-  padding: 0 20px;
-  border: 0;
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--accent-text);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
 }
 
 .wall {

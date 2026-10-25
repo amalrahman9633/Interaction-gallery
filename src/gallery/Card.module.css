@@ -38,10 +38,12 @@
   gap: 6px;
 }
 
-.badge {
+/* Badges and titles carry their own backing so they read on any scene, light or dark. */
+.badge,
+.title {
   padding: 4px 11px;
   border-radius: 999px;
-  background: var(--chip);
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: var(--text);
@@ -55,28 +57,27 @@
 }
 
 .label {
-  left: 20px;
-  right: 20px;
-  bottom: 18px;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
   flex-direction: column;
-  gap: 1px;
+  align-items: flex-start;
+  gap: 4px;
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.35s var(--ease-out), transform 0.5s var(--ease-out);
 }
 
 .title {
-  align-self: flex-start;
-  color: var(--text);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   text-decoration: none;
-  border-radius: 4px;
 }
 
 .credit {
+  padding: 0 11px;
   color: var(--text-2);
-  font-size: 13px;
+  font-size: 12px;
 }
 
 /* Titles appear on hover, or on keyboard focus. Touch screens always show them. */
